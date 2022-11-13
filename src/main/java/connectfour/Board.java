@@ -51,7 +51,7 @@ public class Board{
         return(board[0][column - 1] == 1 ||board[0][column - 1] == 2);
     }
 
-    private boolean validInput (int input) {
+    private boolean validInput(int input) {
         return
         ((input == 1) || 
         (input == 2) || 
@@ -80,7 +80,12 @@ public class Board{
         }
         return pos;
     }
-
+    /**
+     * Function: placePiece
+     * Places a piece in the selected column on the next available spot
+     * @param player
+     * @return
+     */
     public int placePiece(Player player) {
 
         int colChoice = player.getMove() - 1;
@@ -98,6 +103,20 @@ public class Board{
         }
 
         return 1;
+    }
+
+    private boolean isBoardFull() {
+        boolean full = true;
+
+        for(int i = 0; i < col; i++) {
+            for(int j = 0; j < row; j++) {
+                if(board[i][j] == 1 || board[i][j] == 2)
+                {
+                    full = false;
+                }
+            }
+        }
+        return full;
     }
 
 }
