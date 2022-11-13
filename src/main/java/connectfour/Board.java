@@ -105,6 +105,10 @@ public class Board{
         return 1;
     }
 
+    /**
+     * Returns true if Board is full
+     * @return
+     */
     private boolean isBoardFull() {
         boolean full = true;
 
@@ -117,6 +121,24 @@ public class Board{
             }
         }
         return full;
+    }
+
+    private int checkVerticalWinner() {
+        
+        int winner = 0;
+
+        for (int i = 0; i < 3; i++) {
+            for(int j = 0; j < col; j++) {
+                if(board[i][j] == board[i+1][j] &&
+                (board[i][j] == board[i +2][j]) && 
+                (board[i+3][j] == board[i][j]) && 
+                board[i][j] != 0) {
+                    winner = board[i][j];
+                }
+            }
+        }
+
+        return winner;
     }
 
 }
