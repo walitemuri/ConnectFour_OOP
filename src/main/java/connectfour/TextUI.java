@@ -7,6 +7,7 @@ public class TextUI{
         ConnectFour cFourGame = new ConnectFour();
         cFourGame.setPlayerOneSymbol("X");
         cFourGame.setPlayerTwoSymbol("O");
+        cFourGame.setTurn(1);
 
         while(cFourGame.winningPlayer() == 0) {
 
@@ -23,7 +24,7 @@ public class TextUI{
             }
 
             cFourGame.placePiece();
-
+            cFourGame.swapTurn();
         }
 
     }

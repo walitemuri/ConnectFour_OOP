@@ -8,16 +8,14 @@ public class ConnectFour{
     private int turn;
 
     public void setTurn(int n) {
-        switch(n) {
-            case 1:
-                turn = 1;
-                break;
-            case 2:
-                turn = 2;
-                break;
-            default:
-                System.out.println("Invalid Inputb\n");
-                return;
+        turn = n;
+    }
+
+    public void swapTurn() {
+        if (turn == 1) {
+            turn = 2;
+        } else {
+            turn = 1;
         }
     }
 
@@ -40,10 +38,10 @@ public class ConnectFour{
     public void placePiece()
     {
         if (turn == 1) {
-            board.placePiece(player1);
+            board.placePiece(player1.getMove(), player1.getPiece());
         }
         else {
-            board.placePiece(player2);
+            board.placePiece(player2.getMove(), player2.getPiece());
         }
     }
 
