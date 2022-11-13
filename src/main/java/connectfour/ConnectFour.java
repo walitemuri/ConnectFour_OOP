@@ -7,8 +7,7 @@ public class ConnectFour{
     private Player player2 = new Player();
     private int turn;
 
-    public void setTurn(int n)
-    {
+    public void setTurn(int n) {
         switch(n) {
             case 1:
                 turn = 1;
@@ -22,19 +21,20 @@ public class ConnectFour{
         }
     }
 
-    public void setBoard(Board b)
-    {
-        board = b;
+    public void setPlayerOneSymbol(String symbol) {
+        player1.setPiece(symbol);;
     }
 
-    public void setPlayerOne(Player player)
-    {
-        player1 = player;
+    public void setPlayerTwoSymbol(String symbol) {
+        player2.setPiece(symbol);
     }
 
-    public void setPlayerTwo(Player player)
-    {
-        player2 = player;
+    public void setPlayerOneMove(int n) {
+        player1.setMove(n);
+    }
+
+    public void setPlayerTwoMove(int n) {
+        player2.setMove(n);
     }
 
     public void placePiece()
@@ -47,4 +47,11 @@ public class ConnectFour{
         }
     }
 
+    public int winningPlayer() {
+        return board.checkWinner();
+    }
+
+    public boolean checkDraw() {
+        return board.checkForDraw();
+    }
 }

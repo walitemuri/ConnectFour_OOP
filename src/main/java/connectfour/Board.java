@@ -1,13 +1,12 @@
 package connectfour;
 
-public class Board{
+public class Board {
 
     private static int col = 7;
     private static int row = 6;
-    private int[][] board = new int[row][col];
+    private int[][] matrix = new int[row][col];
 
     public void getBoard() {
-
         System.out.println("|---|---|---|---|---|---|---|");
         System.out.println(getRow(0));
         System.out.println("|---|---|---|---|---|---|---|");
@@ -29,15 +28,15 @@ public class Board{
         //Instantiating a StringBuilder object to create modifiable string
         StringBuilder newRow = new StringBuilder("| ");
 
-        //Looping through every row and appending appropriate values contingent on the board matrix values
+        //Looping through every row and appending appropriate values contingent on the matrix matrix values
         for(int i = 0; i < col; i++) {
-            if (board[r][i] == 0) {
+            if (matrix[r][i] == 0) {
                 newRow.append("-");
             }
-            if (board[r][i] == 1) {
+            if (matrix[r][i] == 1) {
                 newRow.append("O");
             }
-            if (board[r][i] == 2) {
+            if (matrix[r][i] == 2) {
                 newRow.append("X");
             }
             newRow.append(" | ");
@@ -48,7 +47,7 @@ public class Board{
     }
 
     private boolean isColumnFull(int column) {
-        return(board[0][column - 1] == 1 ||board[0][column - 1] == 2);
+        return(matrix[0][column - 1] == 1 ||matrix[0][column - 1] == 2);
     }
 
     private boolean validInput(int input) {
@@ -72,7 +71,7 @@ public class Board{
         boolean found = false;
 
         while(pos >= 0 && !found) {
-            if(!(board[pos][column] == 1) && !(board[pos][column] == 2)){
+            if(!(matrix[pos][column] == 1) && !(matrix[pos][column] == 2)){
                 found = true;
             }else {
                 pos--;
@@ -86,10 +85,7 @@ public class Board{
      * @param player
      * @return
      */
-    public int placePiece(Player player) {
-
-        int colChoice = player.getMove() - 1;
-        String symbol = player.getPiece();
+    public int placePiece(int colChoice, String symbol) {
 
         if (isColumnFull(colChoice)){
             return 0;
@@ -97,16 +93,16 @@ public class Board{
 
         if (symbol.equals("X"))
         {
-            board[getNextSlot(colChoice)][colChoice] = 1;
+            matrix[getNextSlot(colChoice)][colChoice] = 1;
         } else {
-            board[getNextSlot(colChoice)][colChoice] = 2;
+            matrix[getNextSlot(colChoice)][colChoice] = 2;
         }
 
         return 1;
     }
 
     /**
-     * Returns true if Board is full
+     * Returns true if matrix is full
      * @return
      */
     private boolean isBoardFull() {
@@ -114,7 +110,7 @@ public class Board{
 
         for(int i = 0; i < col; i++) {
             for(int j = 0; j < row; j++) {
-                if(board[i][j] == 1 || board[i][j] == 2)
+                if(matrix[i][j] == 1 || matrix[i][j] == 2)
                 {
                     full = false;
                 }
@@ -133,11 +129,11 @@ public class Board{
 
         for (int i = 0; i < 3; i++) {
             for(int j = 0; j < col; j++) {
-                if(board[i][j] == board[i+1][j] &&
-                (board[i][j] == board[i +2][j]) && 
-                (board[i][j] == board[+3][j]) && 
-                board[i][j] != 0) {
-                    winner = board[i][j];
+                if(matrix[i][j] == matrix[i+1][j] &&
+                (matrix[i][j] == matrix[i +2][j]) && 
+                (matrix[i][j] == matrix[+3][j]) && 
+                matrix[i][j] != 0) {
+                    winner = matrix[i][j];
                 }
             }
         }
@@ -151,11 +147,11 @@ public class Board{
 
         for (int i = 0; i < row; i++) {
             for(int j = 0; j < 4; j++) {
-                if(board[i][j] == board[i][j+1] &&
-                (board[i][j] == board[i][j+2]) && 
-                (board[i][j] == board[i][j+3]) && 
-                board[i][j] != 0) {
-                    winner = board[i][j];
+                if(matrix[i][j] == matrix[i][j+1] &&
+                (matrix[i][j] == matrix[i][j+2]) && 
+                (matrix[i][j] == matrix[i][j+3]) && 
+                matrix[i][j] != 0) {
+                    winner = matrix[i][j];
                 }
             }
         }
@@ -169,11 +165,11 @@ public class Board{
 
         for (int i = 0; i < 3; i++) {
             for(int j = 0; j < 4; j++) {
-                if(board[i][j] == board[i+1][j+1] &&
-                (board[i][j] == board[i+2][j+2]) && 
-                (board[i][j] == board[i+3][j+3]) && 
-                board[i][j] != 0) {
-                    winner = board[i][j];
+                if(matrix[i][j] == matrix[i+1][j+1] &&
+                (matrix[i][j] == matrix[i+2][j+2]) && 
+                (matrix[i][j] == matrix[i+3][j+3]) && 
+                matrix[i][j] != 0) {
+                    winner = matrix[i][j];
                 }
             }
         }
@@ -187,11 +183,11 @@ public class Board{
 
         for (int i = 0; i < 3; i++) {
             for(int j = 0; j < 4; j++) {
-                if(board[i][j] == board[i+1][j-1] &&
-                (board[i][j] == board[i+2][j-2]) && 
-                (board[i][j] == board[i+3][j-3]) && 
-                board[i][j] != 0) {
-                    winner = board[i][j];
+                if(matrix[i][j] == matrix[i+1][j-1] &&
+                (matrix[i][j] == matrix[i+2][j-2]) && 
+                (matrix[i][j] == matrix[i+3][j-3]) && 
+                matrix[i][j] != 0) {
+                    winner = matrix[i][j];
                 }
             }
         }
@@ -199,7 +195,7 @@ public class Board{
         return winner;
     }
 
-    private int checkWinner() {
+    public int checkWinner() {
 
         int winner = 0;
 
@@ -216,7 +212,7 @@ public class Board{
         return winner;
     }
 
-    private boolean checkForDraw() {
+    public boolean checkForDraw() {
         return(isBoardFull() == true &&(checkWinner() != 1 && checkWinner() != 2));
     }
 
