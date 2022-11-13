@@ -123,15 +123,19 @@ public class Board{
         return full;
     }
 
+    /**
+     * Check Vertical win Conditions
+     * @return
+     */
     private int checkVerticalWinner() {
-        
+
         int winner = 0;
 
         for (int i = 0; i < 3; i++) {
             for(int j = 0; j < col; j++) {
                 if(board[i][j] == board[i+1][j] &&
                 (board[i][j] == board[i +2][j]) && 
-                (board[i+3][j] == board[i][j]) && 
+                (board[i][j] == board[+3][j]) && 
                 board[i][j] != 0) {
                     winner = board[i][j];
                 }
@@ -139,6 +143,81 @@ public class Board{
         }
 
         return winner;
+    }
+
+    private int checkHorizontalWinner() {
+
+        int winner = 0;
+
+        for (int i = 0; i < row; i++) {
+            for(int j = 0; j < 4; j++) {
+                if(board[i][j] == board[i][j+1] &&
+                (board[i][j] == board[i][j+2]) && 
+                (board[i][j] == board[i][j+3]) && 
+                board[i][j] != 0) {
+                    winner = board[i][j];
+                }
+            }
+        }
+
+        return winner;
+    }
+
+    private int checkLeftDiagonalWinner() {
+
+        int winner = 0;
+
+        for (int i = 0; i < 3; i++) {
+            for(int j = 0; j < 4; j++) {
+                if(board[i][j] == board[i+1][j+1] &&
+                (board[i][j] == board[i+2][j+2]) && 
+                (board[i][j] == board[i+3][j+3]) && 
+                board[i][j] != 0) {
+                    winner = board[i][j];
+                }
+            }
+        }
+
+        return winner;
+    }
+
+    private int checkRightDiagonalWinner() {
+
+        int winner = 0;
+
+        for (int i = 0; i < 3; i++) {
+            for(int j = 0; j < 4; j++) {
+                if(board[i][j] == board[i+1][j-1] &&
+                (board[i][j] == board[i+2][j-2]) && 
+                (board[i][j] == board[i+3][j-3]) && 
+                board[i][j] != 0) {
+                    winner = board[i][j];
+                }
+            }
+        }
+
+        return winner;
+    }
+
+    private int checkWinner() {
+
+        int winner = 0;
+
+        if(checkVerticalWinner() == 1 || checkVerticalWinner() == 2) {
+            winner = checkVerticalWinner();
+        }else if(checkHorizontalWinner() == 1 || checkHorizontalWinner() == 2) {
+            winner = checkHorizontalWinner();
+        }else if(checkLeftDiagonalWinner() == 1 || checkLeftDiagonalWinner() == 2) {
+            winner = checkLeftDiagonalWinner();
+        }else if (checkRightDiagonalWinner() == 1 || checkRightDiagonalWinner() == 2) {
+            winner = checkRightDiagonalWinner();
+        }
+
+        return winner;
+    }
+
+    private boolean checkForDraw() {
+        return(isBoardFull() == true &&(checkWinner() != 1 && checkWinner() != 2));
     }
 
 }
