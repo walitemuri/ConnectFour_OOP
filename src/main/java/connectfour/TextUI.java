@@ -15,8 +15,6 @@ public class TextUI{
                 System.out.println("Enter a column to place piece: ");
                
                 strInput = input.next();
-    
-
                 try {
                     num = Integer.parseInt(strInput);
                     if (num > 7 || num < 1) {
