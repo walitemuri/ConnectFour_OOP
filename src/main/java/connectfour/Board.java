@@ -64,7 +64,7 @@ public class Board {
         int pos = 5;
         boolean found = false;
         
-        if(column <= 0) {
+        if(column < 0) {
             return 0;
         }
 
@@ -83,27 +83,24 @@ public class Board {
      * @param player
      * @return
      */
-    public int placePiece(Player player) {
-        int n = player.getMove();
+    public void placePiece(Player player) {
         String symbol = player.getPiece();
+        int colChoice = player.getMove() - 1;
 
-        if(n <= 0) {
-            return 0;
+        if (colChoice < 0) {
+            return;
         }
-
-        int colChoice = n - 1;
         
-        if (isColumnFull(n + 1)){
-            return 0;
+        if (isColumnFull(colChoice + 1)){
+            return;
         }
 
-        if (symbol.equals("X")){
-            matrix[1][colChoice] = 1;
+        if (symbol == "X"){
+            matrix[getNextSlot(colChoice)][colChoice] = 1;
         } else {
-            matrix[2][colChoice] = 2;
-        }
+            matrix[getNextSlot(colChoice)][colChoice] = 2;
+        }       
 
-        return 1;
     }
 
     /**
@@ -189,12 +186,16 @@ public class Board {
 
     public int checkWinner() {
         if(checkVerticalWinner() == 1 || checkVerticalWinner() == 2) {
+            System.out.println("V Win");
             return checkVerticalWinner();
         }else if(checkHorizontalWinner() == 1 || checkHorizontalWinner() == 2) {
+            System.out.println("h Win");
             return checkHorizontalWinner();
         }else if(checkLeftDiagonalWinner() == 1 || checkLeftDiagonalWinner() == 2) {
+            System.out.println("LD Win");
             return checkLeftDiagonalWinner();
         }else if (checkRightDiagonalWinner() == 1 || checkRightDiagonalWinner() == 2) {
+            System.out.println("RD Win");
             return checkRightDiagonalWinner();
         }
         return 0;

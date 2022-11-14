@@ -6,36 +6,10 @@ public class TextUI{
     /**
      * @param cfour
      */
-    private static int getColInput(ConnectFour cfour) {
-        
-        boolean valid = false;
-        String strInput;
-        int num;
+    private static int getColInput() {
 
         Scanner input = new Scanner(System.in);
-            
-        while (!valid) {
-            System.out.println("Enter a column to place piece: ");
-            strInput = input.nextLine();
-            try {
-                num = Integer.parseInt(strInput);
-                if (num > 7 || num < 1) {
-                    System.out.println("Error - enter an integer value between 1-7");
-                    valid = false;
-                }else {
-                    if (cfour.isColumnFull(num)) {
-                        System.out.println("Error - Selected Column is Full.");
-                        valid = false;
-                    } else {
-                        valid = true;
-                        return num;
-                    }
-                }
-            }catch (NumberFormatException e) {
-                System.out.println("Error - enter an integer value between 1-7");
-            }    
-        }
-        return 0;
+        return input.nextInt();
     }
 
     public void printWinner(int n) {
@@ -58,19 +32,23 @@ public class TextUI{
 
             if (cFourGame.winningPlayer() == 1) {
                 userIO.printWinner(1);
+                System.out.println("X win");
                 break;
             } else if (cFourGame.winningPlayer() == 2) {
                 userIO.printWinner(2);
+                System.out.println("X win");
                 break;
             } else if (draw) {
                 System.out.println("Its a draw");
             }
 
-            move = getColInput(cFourGame);
+            move = getColInput();
             if (move == 4) {
+                System.out.println("Move 3");
                 return;
             }
-
+            System.out.println(move);
+            System.out.println(cFourGame.getTurn());
             if (cFourGame.getTurn() == 1) {
                 cFourGame.setPlayerOneMove(move);
             } else {

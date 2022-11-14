@@ -37,7 +37,7 @@ public class Player {
      */
     public void setMove(int m) {
 
-        m = move;
+        move = m;
     }
      /**
      * Get the piece of the Player 
