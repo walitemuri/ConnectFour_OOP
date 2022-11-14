@@ -6,6 +6,9 @@ public class Board {
     private static int row = 6;
     private int[][] matrix = new int[row][col];
 
+    /**
+     * 
+     */
     public void getBoard() {
         System.out.println("|---|---|---|---|---|---|---|");
         System.out.println(getRow(0));
@@ -19,8 +22,6 @@ public class Board {
         System.out.println(getRow(4));
         System.out.println("|---|---|---|---|---|---|---|");
         System.out.println(getRow(5));
-        System.out.println("|---|---|---|---|---|---|---|");
-        System.out.println(getRow(6));
         System.out.println("|---|---|---|---|---|---|---|");
     }
 
@@ -47,6 +48,10 @@ public class Board {
     }
 
     public boolean isColumnFull(int column) {
+        if(column <= 0) {
+            return false;
+        }
+
         return(matrix[0][column - 1] == 1 || matrix[0][column - 1] == 2);
     }
 
@@ -58,6 +63,10 @@ public class Board {
     private int getNextSlot(int column) { 
         int pos = 5;
         boolean found = false;
+        
+        if(column <= 0) {
+            return 0;
+        }
 
         while(pos >= 0 && !found) {
             if(!(matrix[pos][column] == 1) && !(matrix[pos][column] == 2)){
@@ -74,7 +83,13 @@ public class Board {
      * @param player
      * @return
      */
-    public int placePiece(int n, String symbol) {
+    public int placePiece(Player player) {
+        int n = player.getMove();
+        String symbol = player.getPiece();
+
+        if(n <= 0) {
+            return 0;
+        }
 
         int colChoice = n - 1;
         
@@ -83,9 +98,9 @@ public class Board {
         }
 
         if (symbol.equals("X")){
-            matrix[getNextSlot(colChoice)][colChoice] = 1;
+            matrix[1][colChoice] = 1;
         } else {
-            matrix[getNextSlot(colChoice)][colChoice] = 2;
+            matrix[2][colChoice] = 2;
         }
 
         return 1;
@@ -100,7 +115,7 @@ public class Board {
 
         for(int j = 0; j < col; j++) {
             for(int i = 0; i < row; i++) {
-                if(matrix[i][j] == 1 || matrix[i][j] == 2) {
+                if(matrix[i][j] == 0) {
                     full = false;
                 }
             }

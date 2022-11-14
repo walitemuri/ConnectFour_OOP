@@ -41,9 +41,9 @@ public class ConnectFour{
 
     public void placePiece() {
         if (turn == 1) {
-            board.placePiece(player1.getMove(), player1.getPiece());
+            board.placePiece(player1);
         } else {
-            board.placePiece(player2.getMove(), player2.getPiece());
+            board.placePiece(player2);
         }
     }
 
