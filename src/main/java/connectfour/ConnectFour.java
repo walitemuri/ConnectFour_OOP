@@ -11,6 +11,10 @@ public class ConnectFour{
         turn = n;
     }
 
+    public int getTurn() {
+        return turn;
+    }
+
     public void swapTurn() {
         if (turn == 1) {
             turn = 2;
@@ -20,7 +24,7 @@ public class ConnectFour{
     }
 
     public void setPlayerOneSymbol(String symbol) {
-        player1.setPiece(symbol);;
+        player1.setPiece(symbol);
     }
 
     public void setPlayerTwoSymbol(String symbol) {
@@ -35,12 +39,10 @@ public class ConnectFour{
         player2.setMove(n);
     }
 
-    public void placePiece()
-    {
+    public void placePiece() {
         if (turn == 1) {
             board.placePiece(player1.getMove(), player1.getPiece());
-        }
-        else {
+        } else {
             board.placePiece(player2.getMove(), player2.getPiece());
         }
     }
@@ -51,5 +53,13 @@ public class ConnectFour{
 
     public boolean checkDraw() {
         return board.checkForDraw();
+    }
+ 
+    public boolean isColumnFull(int n) {
+           return board.isColumnFull(n);
+    }
+
+    public void getCurrBoard() {
+        board.getBoard();
     }
 }

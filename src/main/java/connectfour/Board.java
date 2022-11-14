@@ -34,10 +34,10 @@ public class Board {
                 newRow.append("-");
             }
             if (matrix[r][i] == 1) {
-                newRow.append("O");
+                newRow.append("X");
             }
             if (matrix[r][i] == 2) {
-                newRow.append("X");
+                newRow.append("O");
             }
             newRow.append(" | ");
         }
@@ -46,21 +46,10 @@ public class Board {
         return newRow.toString();
     }
 
-    private boolean isColumnFull(int column) {
-        return(matrix[0][column - 1] == 1 ||matrix[0][column - 1] == 2);
+    public boolean isColumnFull(int column) {
+        return(matrix[0][column - 1] == 1 || matrix[0][column - 1] == 2);
     }
 
-    private boolean validInput(int input) {
-        return
-        ((input == 1) || 
-        (input == 2) || 
-        (input == 3) ||
-        (input == 4) || 
-        (input == 5) || 
-        (input == 6) || 
-        (input == 7));
-    }
-    
     /**
      * Gets the next available row for a given column slot
      * @param column
@@ -85,14 +74,15 @@ public class Board {
      * @param player
      * @return
      */
-    public int placePiece(int colChoice, String symbol) {
+    public int placePiece(int n, String symbol) {
 
-        if (isColumnFull(colChoice)){
+        int colChoice = n - 1;
+        
+        if (isColumnFull(n + 1)){
             return 0;
         }
 
-        if (symbol.equals("X"))
-        {
+        if (symbol.equals("X")){
             matrix[getNextSlot(colChoice)][colChoice] = 1;
         } else {
             matrix[getNextSlot(colChoice)][colChoice] = 2;
@@ -108,10 +98,9 @@ public class Board {
     private boolean isBoardFull() {
         boolean full = true;
 
-        for(int i = 0; i < col; i++) {
-            for(int j = 0; j < row; j++) {
-                if(matrix[i][j] == 1 || matrix[i][j] == 2)
-                {
+        for(int j = 0; j < col; j++) {
+            for(int i = 0; i < row; i++) {
+                if(matrix[i][j] == 1 || matrix[i][j] == 2) {
                     full = false;
                 }
             }
@@ -127,12 +116,9 @@ public class Board {
 
         int winner = 0;
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < row - 3; i++) {
             for(int j = 0; j < col; j++) {
-                if(matrix[i][j] == matrix[i+1][j] &&
-                (matrix[i][j] == matrix[i +2][j]) && 
-                (matrix[i][j] == matrix[+3][j]) && 
-                matrix[i][j] != 0) {
+                if(matrix[i][j] == matrix[i+1][j] && matrix[i+2][j] == matrix[i+3][j] && matrix[i][j] != 0) {
                     winner = matrix[i][j];
                 }
             }
@@ -145,12 +131,9 @@ public class Board {
 
         int winner = 0;
 
-        for (int i = 0; i < row; i++) {
-            for(int j = 0; j < 4; j++) {
-                if(matrix[i][j] == matrix[i][j+1] &&
-                (matrix[i][j] == matrix[i][j+2]) && 
-                (matrix[i][j] == matrix[i][j+3]) && 
-                matrix[i][j] != 0) {
+        for(int j = 0; j < col - 3; j++) {
+            for(int i = 0; i < row; i++) {
+                if(matrix[i][j] == matrix[i][j+1] && matrix[i][j+2] == matrix[i][j+3] && matrix[i][j] != 0) {
                     winner = matrix[i][j];
                 }
             }
@@ -163,12 +146,9 @@ public class Board {
 
         int winner = 0;
 
-        for (int i = 0; i < 3; i++) {
-            for(int j = 0; j < 4; j++) {
-                if(matrix[i][j] == matrix[i+1][j+1] &&
-                (matrix[i][j] == matrix[i+2][j+2]) && 
-                (matrix[i][j] == matrix[i+3][j+3]) && 
-                matrix[i][j] != 0) {
+        for(int i = 3; i < row; i++) {
+            for(int j = 0; j < col - 3; j++) {
+                if(matrix[i][j] == matrix[i-1][j+1] && matrix[i-2][j+2] == matrix[i-3][j+3] && matrix[i][j] != 0) {
                     winner = matrix[i][j];
                 }
             }
@@ -181,12 +161,9 @@ public class Board {
 
         int winner = 0;
 
-        for (int i = 0; i < 3; i++) {
-            for(int j = 0; j < 4; j++) {
-                if(matrix[i][j] == matrix[i+1][j-1] &&
-                (matrix[i][j] == matrix[i+2][j-2]) && 
-                (matrix[i][j] == matrix[i+3][j-3]) && 
-                matrix[i][j] != 0) {
+        for(int i = 3; i < row; i++) {
+            for(int j = 3; j < col; j++) {
+                if(matrix[i][j] == matrix[i-1][j-1] && matrix[i-2][j-2] == matrix[i-3][j-3] && matrix[i][j] != 0) {
                     winner = matrix[i][j];
                 }
             }
@@ -196,24 +173,20 @@ public class Board {
     }
 
     public int checkWinner() {
-
-        int winner = 0;
-
         if(checkVerticalWinner() == 1 || checkVerticalWinner() == 2) {
-            winner = checkVerticalWinner();
+            return checkVerticalWinner();
         }else if(checkHorizontalWinner() == 1 || checkHorizontalWinner() == 2) {
-            winner = checkHorizontalWinner();
+            return checkHorizontalWinner();
         }else if(checkLeftDiagonalWinner() == 1 || checkLeftDiagonalWinner() == 2) {
-            winner = checkLeftDiagonalWinner();
+            return checkLeftDiagonalWinner();
         }else if (checkRightDiagonalWinner() == 1 || checkRightDiagonalWinner() == 2) {
-            winner = checkRightDiagonalWinner();
+            return checkRightDiagonalWinner();
         }
-
-        return winner;
+        return 0;
     }
 
     public boolean checkForDraw() {
-        return(isBoardFull() == true &&(checkWinner() != 1 && checkWinner() != 2));
+        return(isBoardFull() && (checkWinner() != 1 && checkWinner() != 2));
     }
 
 }
