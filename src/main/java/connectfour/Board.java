@@ -127,10 +127,25 @@ public class Board {
     private int checkVerticalWinner() {
 
         int winner = 0;
+        int i;
+        int j;
 
-        for (int i = 0; i < row - 3; i++) {
-            for(int j = 0; j < col; j++) {
-                if(matrix[i][j] == matrix[i+1][j] && matrix[i+2][j] == matrix[i+3][j] && matrix[i][j] != 0) {
+        for (i = 0; i < row - 3; i++) {
+            for(j = 0; j < col; j++) {
+                if((matrix[i][j] == 1)
+                && (matrix[i+1][j] == 1)
+                && (matrix[i+2][j] == 1)
+                && (matrix[i+3][j] == 1)) {
+                    winner = matrix[i][j];
+                }
+            }
+        }
+        for (i = 0; i < row - 3; i++) {
+            for(j = 0; j < col; j++) {
+                if((matrix[i][j] == 2)
+                && (matrix[i+1][j] == 2)
+                && (matrix[i+2][j] == 2)
+                && (matrix[i+3][j] == 2)) {
                     winner = matrix[i][j];
                 }
             }
@@ -142,10 +157,26 @@ public class Board {
     private int checkHorizontalWinner() {
 
         int winner = 0;
+        int i;
+        int j;
 
-        for(int j = 0; j < col - 3; j++) {
-            for(int i = 0; i < row; i++) {
-                if(matrix[i][j] == matrix[i][j+1] && matrix[i][j+2] == matrix[i][j+3] && matrix[i][j] != 0) {
+        for(j = 0; j < col - 3; j++) {
+            for(i = 0; i < row; i++) {
+                if((matrix[i][j] == 1) 
+                && (matrix[i][j+1] == 1) 
+                && (matrix[i][j+2] == 1)
+                && (matrix[i][j+3] == 1)) {
+                    winner = matrix[i][j];
+                }
+            }
+        }
+
+        for(j = 0; j < col - 3; j++) {
+            for(i = 0; i < row; i++) {
+                if((matrix[i][j] == 2) 
+                && (matrix[i][j+1] == 2) 
+                && (matrix[i][j+2] == 2)
+                && (matrix[i][j+3] == 2)) {
                     winner = matrix[i][j];
                 }
             }
@@ -157,10 +188,25 @@ public class Board {
     private int checkLeftDiagonalWinner() {
 
         int winner = 0;
+        int i;
+        int j;
 
-        for(int i = 3; i < row; i++) {
-            for(int j = 0; j < col - 3; j++) {
-                if(matrix[i][j] == matrix[i-1][j+1] && matrix[i-2][j+2] == matrix[i-3][j+3] && matrix[i][j] != 0) {
+        for(i = 3; i < row; i++) {
+            for(j = 0; j < col - 3; j++) {
+                if((matrix[i][j] == 1) 
+                && (matrix[i-1][j+1] == 1) 
+                && (matrix[i-2][j+2] == 1)
+                && (matrix[i-3][j+3] == 1)) {
+                    winner = matrix[i][j];
+                }
+            }
+        }
+        for(i = 3; i < row; i++) {
+            for(j = 0; j < col - 3; j++) {
+                if((matrix[i][j] == 2) 
+                && (matrix[i-1][j+1] == 2) 
+                && (matrix[i-2][j+2] == 2)
+                && (matrix[i-3][j+3] == 2)) {
                     winner = matrix[i][j];
                 }
             }
@@ -172,10 +218,26 @@ public class Board {
     private int checkRightDiagonalWinner() {
 
         int winner = 0;
+        int i;
+        int j;
 
-        for(int i = 3; i < row; i++) {
-            for(int j = 3; j < col; j++) {
-                if(matrix[i][j] == matrix[i-1][j-1] && matrix[i-2][j-2] == matrix[i-3][j-3] && matrix[i][j] != 0) {
+        for(i = 3; i < row; i++) {
+            for(j = 3; j < col; j++) {
+                if((matrix[i][j] == 1) 
+                && (matrix[i-1][j-1] == 1) 
+                && (matrix[i-2][j-2] == 1)
+                && (matrix[i-3][j-3] == 1)) {
+                    winner = matrix[i][j];
+                }
+            }
+        }
+
+        for(i = 3; i < row; i++) {
+            for(j = 3; j < col; j++) {
+                if((matrix[i][j] == 2) 
+                && (matrix[i-1][j-1] == 2) 
+                && (matrix[i-2][j-2] == 2)
+                && (matrix[i-3][j-3] == 2)) {
                     winner = matrix[i][j];
                 }
             }

@@ -43,10 +43,7 @@ public class TextUI{
             }
 
             move = getColInput();
-            if (move == 4) {
-                System.out.println("Move 3");
-                return;
-            }
+            
             System.out.println(move);
             System.out.println(cFourGame.getTurn());
             if (cFourGame.getTurn() == 1) {
