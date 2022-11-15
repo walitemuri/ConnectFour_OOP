@@ -248,16 +248,12 @@ public class Board {
 
     public int checkWinner() {
         if(checkVerticalWinner() == 1 || checkVerticalWinner() == 2) {
-            System.out.println("V Win");
             return checkVerticalWinner();
         }else if(checkHorizontalWinner() == 1 || checkHorizontalWinner() == 2) {
-            System.out.println("h Win");
             return checkHorizontalWinner();
         }else if(checkLeftDiagonalWinner() == 1 || checkLeftDiagonalWinner() == 2) {
-            System.out.println("LD Win");
             return checkLeftDiagonalWinner();
         }else if (checkRightDiagonalWinner() == 1 || checkRightDiagonalWinner() == 2) {
-            System.out.println("RD Win");
             return checkRightDiagonalWinner();
         }
         return 0;

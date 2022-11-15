@@ -3,13 +3,17 @@ import java.util.Scanner;
 
 public class TextUI{
 
+    private Scanner input = new Scanner(System.in);
+
+    private void closeScanner() {
+        input.close();
+    }
+
     private int getColInput(ConnectFour cfour) {
         
         boolean valid = false;
         String strInput = "";
         int num;
-
-        Scanner input = new Scanner(System.in);
 
             while (!valid) {
                 System.out.println("Enter a column to place piece: ");
@@ -47,7 +51,13 @@ public class TextUI{
     }*/
 
     public void printWinner(int n) {
-        System.out.println("Helo");
+        if(n == 1) {
+            System.out.println("X is the Winner");
+        }else if (n == 2) {
+            System.out.println("O is the Winner");
+        } else {
+            System.out.println("Draw");
+        }
     }
 
     
@@ -89,7 +99,8 @@ public class TextUI{
             cFourGame.swapTurn();
             cFourGame.getCurrBoard();
         }
-
+       userIO.printWinner(cFourGame.winningPlayer());
+       userIO.closeScanner();
     }
 
 }
