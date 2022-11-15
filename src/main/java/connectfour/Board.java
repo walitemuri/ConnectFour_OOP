@@ -220,7 +220,7 @@ public class Board {
         int winner = 0;
         int i;
         int j;
-
+        //Check X win
         for(i = 3; i < row; i++) {
             for(j = 3; j < col; j++) {
                 if((matrix[i][j] == 1) 
@@ -231,7 +231,7 @@ public class Board {
                 }
             }
         }
-
+        //Check O win
         for(i = 3; i < row; i++) {
             for(j = 3; j < col; j++) {
                 if((matrix[i][j] == 2) 

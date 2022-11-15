@@ -40,16 +40,6 @@ public class TextUI{
         return 0;
     }
 
-
-    /**
-     * @param cfour
-     */
-  /*  private static int getColInput() {
-
-        Scanner input = new Scanner(System.in);
-        return input.nextInt();
-    }*/
-
     public void printWinner(int n) {
         if(n == 1) {
             System.out.println("X is the Winner");
@@ -70,26 +60,11 @@ public class TextUI{
         cFourGame.setTurn(1);
         int move;
 
-        while(cFourGame.winningPlayer() == 0) {
-
-            boolean draw = cFourGame.checkDraw();
-
-            if (cFourGame.winningPlayer() == 1) {
-                userIO.printWinner(1);
-                System.out.println("X win");
-                break;
-            } else if (cFourGame.winningPlayer() == 2) {
-                userIO.printWinner(2);
-                System.out.println("X win");
-                break;
-            } else if (draw) {
-                System.out.println("Its a draw");
-            }
+        cFourGame.getInstructions();
+        while(cFourGame.winningPlayer() == 0 &&!cFourGame.checkDraw()) {
 
             move = userIO.getColInput(cFourGame);
-
-            System.out.println(move);
-            System.out.println(cFourGame.getTurn());
+            
             if (cFourGame.getTurn() == 1) {
                 cFourGame.setPlayerOneMove(move);
             } else {

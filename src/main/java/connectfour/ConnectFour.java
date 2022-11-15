@@ -39,6 +39,24 @@ public class ConnectFour{
         player2.setMove(n);
     }
 
+    public void getInstructions() {
+        System.out.println("\nSelect following inputs to place your piece in the column\n");
+        System.out.println("|---|---|---|---|---|---|---|");
+        System.out.println("| 1 | 2 | 3 | 4 | 5 | 6 | 7 |");
+        System.out.println("|---|---|---|---|---|---|---|");
+        System.out.println("|   |   |   |   |   |   |   |");
+        System.out.println("|---|---|---|---|---|---|---|");
+        System.out.println("|   |   |   |   |   |   |   |");
+        System.out.println("|---|---|---|---|---|---|---|");
+        System.out.println("|   |   |   |   |   |   |   |");
+        System.out.println("|---|---|---|---|---|---|---|");
+        System.out.println("|   |   |   |   |   |   |   |");
+        System.out.println("|---|---|---|---|---|---|---|");
+        System.out.println("|   |   |   |   |   |   |   |");
+        System.out.println("|---|---|---|---|---|---|---|");
+
+    }
+
     public void placePiece() {
         if (turn == 1) {
             board.placePiece(player1);
