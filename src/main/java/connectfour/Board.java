@@ -25,11 +25,19 @@ public class Board {
         System.out.println("|---|---|---|---|---|---|---|");
     }
 
+    public void setBoard(int[][] board) {
+        matrix = board;
+    }
+
+    public int[][] getMatrix() {
+        return matrix;
+    }
+
     private String getRow(int r) {
         //Instantiating a StringBuilder object to create modifiable string
         StringBuilder newRow = new StringBuilder("| ");
 
-        //Looping through every row and appending appropriate values contingent on the matrix matrix values
+        //Looping through every row and appending appropriate values contingent on the matrix values
         for(int i = 0; i < col; i++) {
             if (matrix[r][i] == 0) {
                 newRow.append("-");

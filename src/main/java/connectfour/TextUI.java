@@ -52,19 +52,26 @@ public class TextUI{
 
     
     public static void main(String[] args) {
-        
+    
         TextUI userIO = new TextUI();
         ConnectFour cFourGame = new ConnectFour();
         cFourGame.setPlayerOneSymbol("X");
         cFourGame.setPlayerTwoSymbol("O");
         cFourGame.setTurn(1);
         int move;
+        cFourGame.loadGame("exampleboard.csv");
 
         cFourGame.getInstructions();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        cFourGame.getCurrBoard();        
         while(cFourGame.winningPlayer() == 0 &&!cFourGame.checkDraw()) {
 
             move = userIO.getColInput(cFourGame);
-            
+
             if (cFourGame.getTurn() == 1) {
                 cFourGame.setPlayerOneMove(move);
             } else {
@@ -75,6 +82,7 @@ public class TextUI{
             cFourGame.getCurrBoard();
         }
        userIO.printWinner(cFourGame.winningPlayer());
+       cFourGame.saveGame();
        userIO.closeScanner();
     }
 
