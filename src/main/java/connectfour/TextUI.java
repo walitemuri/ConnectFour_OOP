@@ -9,6 +9,41 @@ public class TextUI{
         input.close();
     }
 
+    private String getMenu() {
+        System.out.println("Would you like to load a saved game or play a new one?");
+        System.out.println("1.Load Game");
+        System.out.println("2.Run a New Game");
+
+        boolean valid = false;
+        String strInput = "";
+        int num;
+
+        while(!valid) {
+            System.out.println("Enter Selection (1-2): ");
+            strInput = input.next();
+            try {
+                num = Integer.parseInt(strInput);
+                if(num > 2 || num < 1) {
+                    System.out.println("Error - enter an integer value between 1-2");
+                    valid = false;
+                } else {
+                    if(num == 1) {
+                        System.out.println("Enter filename: ");
+                        strInput = input.next();
+                        return strInput;
+                    }else if(num == 2) {
+                        return null;
+                    }else { 
+                        valid = false;
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return null;
+    }
+
     private int getColInput(ConnectFour cfour) {
         
         boolean valid = false;
@@ -35,6 +70,7 @@ public class TextUI{
                     }
                 }catch (NumberFormatException e) {
                     System.out.println("Error - enter an integer value between 1-7");
+                    System.out.println(e.getMessage());
                 }
             }
         return 0;
@@ -59,7 +95,11 @@ public class TextUI{
         cFourGame.setPlayerTwoSymbol("O");
         cFourGame.setTurn(1);
         int move;
-        cFourGame.loadGame("exampleboard.csv");
+        String fileName = userIO.getMenu();
+        
+        if (fileName != null) {
+            cFourGame.loadGame(fileName);
+        }
 
         cFourGame.getInstructions();
         try {
