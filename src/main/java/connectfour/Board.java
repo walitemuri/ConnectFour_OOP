@@ -91,9 +91,8 @@ public class Board {
      * @param player
      * @return
      */
-    public void placePiece(Player player) {
-        String symbol = player.getPiece();
-        int colChoice = player.getMove() - 1;
+    public void placePiece(int n, String symbol) {
+        int colChoice = n- 1;
 
         if (colChoice < 0) {
             return;
@@ -103,7 +102,7 @@ public class Board {
             return;
         }
 
-        if (symbol == "X"){
+        if (symbol.equals("X")){
             matrix[getNextSlot(colChoice)][colChoice] = 1;
         } else {
             matrix[getNextSlot(colChoice)][colChoice] = 2;
@@ -115,7 +114,7 @@ public class Board {
      * Returns true if matrix is full
      * @return
      */
-    private boolean isBoardFull() {
+    public boolean isBoardFull() {
         boolean full = true;
 
         for(int j = 0; j < col; j++) {

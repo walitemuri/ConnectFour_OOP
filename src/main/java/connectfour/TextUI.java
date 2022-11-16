@@ -38,6 +38,7 @@ public class TextUI{
                     }
                 }
             } catch (Exception e) {
+                System.out.println("Error Invalid Input - Enter 1 to Load Game, 2 for a New Game");
                 System.out.println(e.getMessage());
             }
         }
