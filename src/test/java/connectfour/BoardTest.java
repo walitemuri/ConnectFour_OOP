@@ -26,9 +26,10 @@ public class BoardTest{
                 }
             }
         }
+        testMatrix[0][2] = 0;
         board.setBoard(testMatrix);
         testMatrix = board.getMatrix();
-        Assert.assertEquals(1, testMatrix[0][2]);
+        Assert.assertEquals(0, testMatrix[0][2]);
         Assert.assertEquals(2, testMatrix[0][1]);
         Assert.assertEquals(1, testMatrix[5][2]);
         Assert.assertEquals(2, testMatrix[3][1]);
@@ -37,7 +38,6 @@ public class BoardTest{
     @Test 
     public void isColumnFull() {
         int col = 1;
-        int col2 = 4;
 
         int[][] testMatrix = new int[6][7];
 
@@ -46,13 +46,8 @@ public class BoardTest{
             testMatrix[i][0] = 1;
         }
 
-        //Filling col2
-        for(int j = 0; j < 6; j++) {
-            testMatrix[j][3] = 2;
-        }
         board.setBoard(testMatrix);
         Assert.assertTrue(board.isColumnFull(col));
-        Assert.assertTrue(board.isColumnFull(col2));
         Assert.assertFalse(board.isColumnFull(6));
     }
 
@@ -114,6 +109,7 @@ public class BoardTest{
     @Test 
     public void isBoardFullShouldBeTrue() {
         int[][] testMatrix = new int[6][7];
+        int[][] testMatrix2 = new int[6][7];
 
         for (int j = 0; j < 7; j++) {
             for (int i = 0; i < 6; i++) {
@@ -122,5 +118,7 @@ public class BoardTest{
         }
         board.setBoard(testMatrix);
         Assert.assertTrue(board.isBoardFull());
+        board.setBoard(testMatrix2);
+        Assert.assertFalse(board.isBoardFull());
     }
 }
