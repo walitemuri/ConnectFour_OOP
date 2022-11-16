@@ -55,6 +55,7 @@ public class ConnectFour{
         System.out.println("|---|---|---|---|---|---|---|");
         System.out.println("|   |   |   |   |   |   |   |");
         System.out.println("|---|---|---|---|---|---|---|");
+        System.out.println("Enter 10 to quit and save your game");
 
     }
 

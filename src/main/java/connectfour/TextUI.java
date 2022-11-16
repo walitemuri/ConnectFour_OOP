@@ -51,14 +51,19 @@ public class TextUI{
         int num;
 
             while (!valid) {
-                System.out.println("Enter a column to place piece: ");
+                System.out.println("Enter a column to place piece (1-7) or 10 to Save and Quit: ");
                
                 strInput = input.next();
                 try {
                     num = Integer.parseInt(strInput);
                     if (num > 7 || num < 1) {
-                        System.out.println("Error - enter an integer value between 1-7");
-                        valid = false;
+                        if(num == 10) {
+                            valid = true;
+                            return num;
+                        }else {
+                            System.out.println("Error - enter an integer value between 1-7");
+                            valid = false;
+                        }
                     }else {
                         if (cfour.isColumnFull(num)) {
                             System.out.println("Error - Selected Column is Full.");
@@ -103,7 +108,7 @@ public class TextUI{
 
         cFourGame.getInstructions();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -111,6 +116,12 @@ public class TextUI{
         while(cFourGame.winningPlayer() == 0 &&!cFourGame.checkDraw()) {
 
             move = userIO.getColInput(cFourGame);
+            if(move == 10) {
+                cFourGame.saveGame();
+                userIO.closeScanner();
+                System.out.println("Game is saved in /course/coursework/A2/assets/saveFile.csv");
+                System.exit(0);
+            }
 
             if (cFourGame.getTurn() == 1) {
                 cFourGame.setPlayerOneMove(move);
@@ -122,8 +133,6 @@ public class TextUI{
             cFourGame.getCurrBoard();
         }
        userIO.printWinner(cFourGame.winningPlayer());
-       cFourGame.saveGame();
        userIO.closeScanner();
     }
-
 }
