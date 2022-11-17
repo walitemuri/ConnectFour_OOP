@@ -5,8 +5,25 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.FileWriter;
 
+/**
+ * This class is a Template for the FileIO Object
+ *
+ * This class is responsible for handling: 
+ * File input for matrices using CSV file format
+ * File output for matrices using CSV file format
+ * </p>
+ * @author Wali Temuri - 1183379
+ */
 public class FileIO {
-
+    
+    /**
+     * Reads line by line from CSV file
+     * Splits comma delimited integers and parses them into matrix
+     * Returns int matrix
+     * 
+     * @param String containing the file name 
+     * @return int[][]
+     */
     public int[][] fileReader(String fileName) {
         String filePath = "/course/coursework/A2/assets/";
         filePath = filePath.concat(fileName);
@@ -34,7 +51,13 @@ public class FileIO {
         }
         return matrix;
     }
-
+    /**
+     * Reads writes line by line in desired CSV file
+     * Takes entries in integer matrix and constructs a line to print
+     * 
+     * @param Int[][]
+     * @return void
+     */
     public void fileWriter(int[][] matrix) {
 
         String filePath = "/course/coursework/A2/assets/saveFile.csv";

@@ -1,5 +1,18 @@
 package connectfour;
-
+/**
+ * This class is a Template for the ConnectFour Object
+ * <p>
+ * Composition of: 
+ * 1 Board Object
+ * 2 Player Objects
+ * 1 FileIO Object
+ * 1 Integer instance variable to represent turn 1 for X 2 for 0
+ * </p>
+ * <p>
+ * This class is responsible for winners, draws, loading, saving
+ * </p>
+ * @author Wali Temuri - 1183379
+ */
 public class ConnectFour{
 
     private Board board = new Board();
@@ -58,23 +71,51 @@ public class ConnectFour{
         System.out.println("Enter 10 to quit and save your game");
 
     }
-
+    /**
+     * Loading Game Method, uses fileIO to read from CSV file
+     * 
+     * Returns void
+     * 
+     * @param String file name
+     * @return void
+     */
     public void loadGame(String fileName) {
        int[][]  matrix = new int[6][7];
        matrix = fileIO.fileReader(fileName);
        setBoard(matrix);
     }
-
+    /**
+     * Saving Game Method, uses fileIO to write to CSV file
+     * 
+     * Returns void
+     * 
+     * @param String file name
+     * @return void
+     */
     public void saveGame() {
         int[][]  matrix = new int[6][7];
         matrix = board.getMatrix();
         fileIO.fileWriter(matrix);
     }
-
+    /**
+     * Sets the board matrix in board instance
+     * 
+     * Returns void
+     * 
+     * @param Int[][] matrix
+     * @return void
+     */
     public void setBoard(int[][] matrix) {
         board.setBoard(matrix);
     }
-
+    /**
+     * Places piece in board instance
+     * 
+     * Returns void
+     * 
+     * @param Void 
+     * @return void
+     */
     public void placePiece() {
         if (turn == 1) {
             board.placePiece(player1.getMove(), player1.getPiece());

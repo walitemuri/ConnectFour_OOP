@@ -1,6 +1,15 @@
 package connectfour;
 import java.util.Scanner;
 
+
+/**
+ * This class is a Template for the TextUI Object
+ * <p>
+ * 1 Atrribute - Scanner 
+ * Responsbile for handling UI and Interaction
+ * 
+ * @author Wali Temuri - 1183379
+ */
 public class TextUI{
 
     private Scanner input = new Scanner(System.in);
@@ -9,6 +18,14 @@ public class TextUI{
         input.close();
     }
 
+     /**
+     * Prints the menu and ensures correct input
+     * Uses Scanner to get user input and try-catch blocks for input validation
+     * Returns String containing input
+     *      
+     * @param Null
+     * @return String
+     */
     private String getMenu() {
         System.out.println("Would you like to load a saved game or play a new one?");
         System.out.println("1.Load Game");
@@ -44,7 +61,14 @@ public class TextUI{
         }
         return null;
     }
-
+    /**
+     * Method Is responsible for Getting Column Input
+     * Uses Scanner to get user input and try-catch blocks for input validation
+     * Returns integer containing move
+     *      
+     * @param Connect4Game
+     * @return Int
+     */
     private int getColInput(ConnectFour cfour) {
         
         boolean valid = false;
@@ -92,7 +116,13 @@ public class TextUI{
         }
     }
 
-    
+     /**
+     * Main method
+     * Runs the game using Connect4 instance and TextUI
+     *      
+     * @param String[] args
+     * @return Int
+     */
     public static void main(String[] args) {
     
         TextUI userIO = new TextUI();

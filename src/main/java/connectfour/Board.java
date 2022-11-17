@@ -1,5 +1,15 @@
 package connectfour;
-
+/**
+ * This class is a Template for the Board Object
+ * <p>
+ * The atttribute of the board is a 6*7 matrix representing the squares
+ * This class handles Updating, Verifying moves and Printing the Board
+ * </p>
+ * <p>
+ * This class also checks for winning conditions
+ * </p>
+ * @author Wali Temuri - 1183379
+ */
 public class Board {
 
     private static int col = 7;
@@ -7,7 +17,12 @@ public class Board {
     private int[][] matrix = new int[row][col];
 
     /**
+     * Constructs the board interface and prints it 
      * 
+     * Returns void
+     * 
+     * @param void
+     * @return void
      */
     public void getBoard() {
         System.out.println("|---|---|---|---|---|---|---|");
@@ -88,8 +103,8 @@ public class Board {
     /**
      * Function: placePiece
      * Places a piece in the selected column on the next available spot
-     * @param player
-     * @return
+     * @param int n, String symbol
+     * @return void
      */
     public void placePiece(int n, String symbol) {
         int colChoice = n- 1;
@@ -129,7 +144,7 @@ public class Board {
 
     /**
      * Check Vertical win Conditions
-     * @return
+     * @return int, winning digit 1 for X 2 for O
      */
     private int checkVerticalWinner() {
 
@@ -160,7 +175,10 @@ public class Board {
 
         return winner;
     }
-
+    /**
+     * Check Horizontal win Conditions
+     * @return int, winning digit 1 for X 2 for O
+     */
     private int checkHorizontalWinner() {
 
         int winner = 0;
@@ -191,7 +209,10 @@ public class Board {
 
         return winner;
     }
-
+    /**
+     * Check Left Diagonal win Conditions
+     * @return int, winning digit 1 for X 2 for O
+     */
     private int checkLeftDiagonalWinner() {
 
         int winner = 0;
@@ -221,7 +242,10 @@ public class Board {
 
         return winner;
     }
-
+    /**
+     * Check Right Diagonal win Conditions
+     * @return int, winning digit 1 for X 2 for O
+     */
     private int checkRightDiagonalWinner() {
 
         int winner = 0;
@@ -252,7 +276,10 @@ public class Board {
 
         return winner;
     }
-
+    /**
+     * Checks all win conditions and returns winning integer representation
+     * @return int, winning digit 1 for X 2 for O
+     */
     public int checkWinner() {
         if(checkVerticalWinner() == 1 || checkVerticalWinner() == 2) {
             return checkVerticalWinner();
@@ -265,7 +292,10 @@ public class Board {
         }
         return 0;
     }
-
+    /**
+     * Checks for draw
+     * @return boolean true or false
+     */
     public boolean checkForDraw() {
         return(isBoardFull() && (checkWinner() != 1 && checkWinner() != 2));
     }
