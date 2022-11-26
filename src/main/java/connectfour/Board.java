@@ -308,4 +308,18 @@ public class Board {
         return(isBoardFull() && (checkWinner() != 1 && checkWinner() != 2));
     }
 
+    @Override
+    public String toString() {
+        String matrixString = "";
+
+        for(int i = 0; i < 6; i++) {
+            for(int j = 0; j < 7; j++) {
+                matrixString = matrixString + Integer.toString(matrix[i][j]);
+            }
+            matrixString = matrixString + "\n";
+        }
+
+        return matrixString;
+    }
+
 }
