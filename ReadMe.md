@@ -17,18 +17,18 @@ The main objects used to design the gameplay was Board, Player,ConnectFour. Text
 These are the following attributes of each object:
 
 Board:
-    * 6*7 integer matrix representing the slots of a Connect4 Board
+* 6*7 integer matrix representing the slots of a Connect4 Board
 
 Player:
-    * String, playerSymbol "X" and "O" are used for my example
-    -Integer, currentMove for storing players intended move
+* String, playerSymbol "X" and "O" are used for my example
+*Integer, currentMove for storing players intended move
 
 ConnectFour:
-    * Composition:
-    * Board
-    * 2 Player
-    * FileIO
-    * turn Integer to keep track of turns
+* Composition:
+* Board
+* 2 Player
+* FileIO
+* turn Integer to keep track of turns
 
 TextUI:
     * Scanner for user Input
