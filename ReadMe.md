@@ -31,10 +31,10 @@ ConnectFour:
 * turn Integer to keep track of turns
 
 TextUI:
-    * Scanner for user Input
+* Scanner for user Input
 
 FileIO:
-    * No instance variables
+* No instance variables
 
 ## Getting Started
 
