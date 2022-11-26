@@ -61,4 +61,10 @@ public class Player {
     public int getMove() {
         return move;
     }
+
+    @Override
+    public String toString() {
+        String playerProfile = piece + " " + Integer.toString(move);
+        return playerProfile;
+    }
 }
