@@ -139,4 +139,8 @@ public class ConnectFour{
     public void getCurrBoard() {
         board.getBoard();
     }
+
+    public void clearBoard() {
+        board.clearBoardMatrix();
+    }
 }

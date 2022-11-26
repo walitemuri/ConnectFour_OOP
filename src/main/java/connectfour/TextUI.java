@@ -116,6 +116,33 @@ public class TextUI{
         }
     }
 
+    public boolean getQuitInput() {
+        
+        boolean valid = false;
+        String strInput = "";
+
+        while (!valid) {
+            System.out.println("Would you like to play another game? (y/n)? ");
+            strInput = input.next();
+            try {
+                if(strInput.equals("y")) {
+                    valid = true;
+                    return true;
+                }else if(strInput.equals("n")) {
+                    valid = true;
+                    return false;
+                }else{
+                    valid = false;
+                }
+
+            }catch (Exception e) {
+                System.out.println("Error - enter an integer value between 1-7");
+                System.out.println(e.getMessage());
+            }
+        }
+        return false;
+    }
+
      /**
      * Main method
      * Runs the game using Connect4 instance and TextUI
@@ -124,7 +151,6 @@ public class TextUI{
      * @return Int
      */
     public static void main(String[] args) {
-    
         TextUI userIO = new TextUI();
         ConnectFour cFourGame = new ConnectFour();
         cFourGame.setPlayerOneSymbol("X");
@@ -132,20 +158,18 @@ public class TextUI{
         cFourGame.setTurn(1);
         int move;
         String fileName = userIO.getMenu();
-        
         if (fileName != null) {
             cFourGame.loadGame(fileName);
         }
-
         cFourGame.getInstructions();
         try {
             Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        cFourGame.getCurrBoard();        
-        while(cFourGame.winningPlayer() == 0 &&!cFourGame.checkDraw()) {
+        cFourGame.getCurrBoard();
 
+        while(cFourGame.winningPlayer() == 0 &&!cFourGame.checkDraw()) {
             move = userIO.getColInput(cFourGame);
             if(move == 10) {
                 cFourGame.saveGame();
@@ -153,7 +177,6 @@ public class TextUI{
                 System.out.println("Game is saved in /course/coursework/A2/assets/saveFile.csv");
                 System.exit(0);
             }
-
             if (cFourGame.getTurn() == 1) {
                 cFourGame.setPlayerOneMove(move);
             } else {
@@ -163,7 +186,7 @@ public class TextUI{
             cFourGame.swapTurn();
             cFourGame.getCurrBoard();
         }
-       userIO.printWinner(cFourGame.winningPlayer());
-       userIO.closeScanner();
+        userIO.printWinner(cFourGame.winningPlayer());
+        userIO.closeScanner();
     }
 }
