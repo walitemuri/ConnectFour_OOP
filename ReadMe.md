@@ -103,20 +103,6 @@ Contact: wtemuri@uoguelph.ca
 
 Keep a log of what things you accomplish when.  You can use git's tagging feature to tag the versions or you can reference commits.
 
-* 0.3.2
-    * Finished Documentation
-* 0.3.1
-    * Added input verification
-* 0.3.0
-    * Completed all class Templates
-    * Methods are finished
-* 0.2.1
-    * Added Functions: setGameState() --Later Deleted
-    * Checking Win Function started
-* 0.2.0
-    * Added Class: Board, Player
-    * Added Functions: getSymbol(), getCurrMove(), placePiece()
-    * See [commit change]() or See [release history]()
 * 0.1.0
     * Initial Inception 
 
